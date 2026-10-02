@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cineflix - Compra de Ingressos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= TELA 1: DETALHES DO FILME E HORÁRIOS ================= -->
+    <div id="tela-filme" class="container">
+        <header class="topo-cinema">
+            <h1 class="logo-cineflix">CINEFLIX<span>.</span></h1>
+        </header>
+
+        <main class="conteudo-filme">
+            <div class="cartaz-e-info">
+                <!-- Capa/Poster Simulado do Filme -->
+                <div class="cartaz">
+                    <span class="texto-cartaz">VERITY</span>
+                </div>
+                
+                <div class="info-texto">
+                    <h2 class="filme-titulo">Verity</h2>
+                    <p class="meta-info">⏱️ 125 min | <span class="classificacao">+16</span></p>
+                    <p class="genero"><strong>Gênero:</strong> Suspense / Drama / Mistério</p>
+                    <p class="sinopse">
+                        <strong>Sinopse:</strong> Uma escritora em ascensão é contratada para concluir os livros restantes de uma autora de sucesso que sofreu um terrível acidente. Ao se mudar para a residência do casal, ela encontra uma autobiografia oculta contendo revelações perturbadoras sobre o passado da família.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Seletor de Data Expansível -->
+            <div class="seletor-data-container">
+                <button class="botao-data" id="btnExpandirData">
+                    📅 Quinta-feira, Hoje <span>▼</span>
+                </button>
+                <div class="datas-ocultas" id="listaDatas">
+                    <div class="opcao-data ativa">Hoje (Qui)</div>
+                    <div class="opcao-data">Amanhã (Sex)</div>
+                    <div class="opcao-data">Sábado (Sáb)</div>
+                    <div class="opcao-data">Domingo (Dom)</div>
+                </div>
+            </div>
+
+            <!-- Blocos de Horários das Sessões -->
+            <h3 class="subtitulo-secao">Sessões Disponíveis</h3>
+            <div class="blocos-sessoes">
+                <button class="bloco-sessao" onclick="irParaMapa('Sala 1', '14:45')">
+                    <span class="sessao-hora">14:45</span>
+                    <span class="sessao-sala">SALA 1 • LEG</span>
+                </button>
+                <button class="bloco-sessao" onclick="irParaMapa('Sala 3', '16:00')">
+                    <span class="sessao-hora">16:00</span>
+                    <span class="sessao-sala">SALA 3 • DUB</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= TELA 2: SELEÇÃO DE POLTRONAS (OCULTA INICIALMENTE) ================= -->
+    <div id="tela-mapa" class="container oculto">
+        <header class="topo-cinema">
+            <button class="btn-voltar" id="btnVoltar">← Voltar</button>
+            <h1 class="logo-cineflix">CINEFLIX<span>.</span></h1>
+            <p class="sessao-selecionada-info" id="infoSessaoTopo">Sala X - 00:00</p>
+        </header>
+
+        <!-- Curvatura realista da tela de projeção -->
+        <div class="projecao-container">
+            <div class="tela-curva"></div>
+            <p class="legenda-tela">TELA</p>
+        </div>
+
+        <!-- Grade com as 360 poltronas (Geradas por JS) -->
+        <div class="sala-rolagem">
+            <main class="mapa-assentos" id="mapaAssentos"></main>
+        </div>
+
+        <!-- Barra de legendas e significados dos símbolos -->
+        <section class="barra-legendas">
+            <div class="legenda-linha">
+                <div class="item-legenda"><div class="quadrado disponivel"></div> Livre (Verde)</div>
+                <div class="item-legenda"><div class="quadrado selecionado"></div> Selecionando (Azul)</div>
+                <div class="item-legenda"><div class="quadrado ocupado"></div> Comprado (Amarelo)</div>
+            </div>
+            <div class="legenda-linha simbolos">
+                <div class="item-legenda">♿ Cadeirante</div>
+                <div class="item-legenda">🐘 Obeso</div>
+                <div class="item-legenda">❤️ Namoradeira</div>
+            </div>
+        </section>
+
+        <!-- Seletor de Tipo de Ingresso -->
+        <section class="seletor-tipo-ingresso">
+            <label for="tipoIngresso">Tipo de Ingresso:</label>
+            <select id="tipoIngresso">
+                <option value="inteira">Inteira (R$ 16,00)</option>
+                <option value="meia">Meia-Entrada (R$ 12,00)</option>
+            </select>
+        </section>
+
+        <!-- Painel de resumo dinâmico e fechamento -->
+        <footer class="painel-valores">
+            <div class="dados-compra">
+                <div>
+                    <p class="label">Poltronas</p>
+                    <p class="valor-destaque" id="listaAssentosTexto">-</p>
+                </div>
+                <div>
+                    <p class="label">Total a pagar</p>
+                    <p class="valor-destaque" id="valorTotal">R$ 0,00</p>
+                </div>
+            </div>
+            <button class="botao-confirmar" id="btnConfirmar" disabled>Confirmar Ingressos</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

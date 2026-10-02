@@ -1,0 +1,414 @@
+/* --- Cores Identidade Cineflix: Azul Marinho Profundo e Dourado --- */
+:root {
+    --azul-escuro: #090e1a;
+    --azul-painel: #121a2e;
+    --dourado: #d4af37;
+    --dourado-hover: #f3cd57;
+    
+    /* Estados das poltronas solicitados */
+    --poltrona-livre: #10b981;       /* Verde */
+    --poltrona-selecionada: #2563eb; /* Azul */
+    --poltrona-ocupada: #eab308;     /* Amarelo */
+    
+    --texto: #f8fafc;
+    --texto-mutado: #94a3b8;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background-color: var(--azul-escuro);
+    color: var(--texto);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--azul-painel);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 520px; /* Largado ligeiramente maior para caber as 20 colunas de forma legível */
+    box-sizing: border-box;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.topo-cinema {
+    text-align: center;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.logo-cineflix {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--texto);
+    margin: 0;
+}
+
+.logo-cineflix span {
+    color: var(--dourado);
+}
+
+.btn-voltar {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    background: transparent;
+    border: none;
+    color: var(--dourado);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ================= ELEMENTOS DA TELA 1 (FILME) ================= */
+.cartaz-e-info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.cartaz {
+    width: 130px;
+    height: 190px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 2px solid var(--dourado);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    flex-shrink: 0;
+}
+
+.texto-cartaz {
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--dourado);
+    letter-spacing: 2px;
+}
+
+.info-texto {
+    text-align: left;
+}
+
+.filme-titulo {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    color: var(--texto);
+}
+
+.meta-info {
+    font-size: 13px;
+    color: var(--texto-mutado);
+    margin: 0 0 10px 0;
+}
+
+.classificacao {
+    background-color: #e11d48;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.genero {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+.sinopse {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+/* Seletor de Data Expansível */
+.seletor-data-container {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.botao-data {
+    width: 100%;
+    background-color: var(--azul-escuro);
+    border: 1px solid var(--dourado);
+    color: var(--texto);
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.datas-ocultas {
+    display: none;
+    background-color: var(--azul-escuro);
+    border: 1px solid var(--dourado);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+
+.datas-ocultas.aberto {
+    display: block;
+}
+
+.opcao-data {
+    padding: 10px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 1px solid #1e293b;
+}
+
+.opcao-data:hover {
+    background-color: #1e293b;
+}
+
+.opcao-data.ativa {
+    color: var(--dourado);
+    font-weight: bold;
+}
+
+.subtitulo-secao {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--texto-mutado);
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.blocos-sessoes {
+    display: flex;
+    gap: 15px;
+}
+
+.bloco-sessao {
+    flex: 1;
+    background-color: var(--azul-escuro);
+    border: 2px solid #1e293b;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.bloco-sessao:hover {
+    border-color: var(--dourado);
+    transform: translateY(-2px);
+}
+
+.sessao-hora {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dourado);
+}
+
+.sessao-sala {
+    font-size: 11px;
+    color: var(--texto-mutado);
+    margin-top: 4px;
+}
+
+/* ================= ELEMENTOS DA TELA 2 (MAPA DE POLTRONAS) ================= */
+.sessao-selecionada-info {
+    font-size: 12px;
+    color: var(--texto-mutado);
+    margin: 4px 0 0 0;
+}
+
+.projecao-container {
+    perspective: 300px;
+    margin-bottom: 25px;
+}
+
+.tela-curva {
+    background: linear-gradient(to bottom, #38bdf8, transparent);
+    height: 6px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 50% / 100% 100% 0 0;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+}
+
+.legenda-tela {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--texto-mutado);
+    margin: 5px 0 0 0;
+}
+
+/* Barra de rolagem horizontal caso a tela fique muito estreita para as 20 colunas */
+.sala-rolagem {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+}
+
+/* Layout estrito de 20 colunas */
+.mapa-assentos {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 6px;
+    min-width: 460px; /* Garante estabilidade visual das 20 poltronas */
+}
+
+/* Estilização individual da Poltrona */
+.assento {
+    background-color: var(--poltrona-livre);
+    color: #fff;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 6px 0;
+    border-radius: 5px 5px 2px 2px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: transform 0.1s;
+}
+
+.assento:not(.ocupado):hover {
+    transform: scale(1.15);
+}
+
+/* Modificadores de Estado solicitados */
+.assento.selecionado {
+    background-color: var(--poltrona-selecionada) !important;
+}
+
+.assento.ocupado {
+    background-color: var(--poltrona-ocupada) !important;
+    cursor: not-allowed;
+    color: #451a03;
+}
+
+/* Estilos de tipos especiais de poltrona */
+.assento.pcd {
+    border: 1px dashed white;
+}
+.assento.obeso {
+    border: 2px solid white;
+}
+.assento.namoradeira {
+    border-radius: 8px 8px 2px 2px;
+}
+
+/* Seções de Legenda e Significados */
+.barra-legendas {
+    background-color: var(--azul-escuro);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.legenda-linha {
+    display: flex;
+    justify-content: space-around;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.legenda-linha.simbolos {
+    margin-bottom: 0;
+    border-top: 1px solid #1e293b;
+    padding-top: 10px;
+    color: var(--texto-mutado);
+}
+
+.item-legenda {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quadrado {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+.quadrado.disponivel { background-color: var(--poltrona-livre); }
+.quadrado.selecionado { background-color: var(--poltrona-selecionada); }
+.quadrado.ocupado { background-color: var(--poltrona-ocupada); }
+
+/* Tipo de Ingresso */
+.seletor-tipo-ingresso {
+    text-align: left;
+    font-size: 13px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seletor-tipo-ingresso select {
+    background-color: var(--azul-escuro);
+    color: white;
+    border: 1px solid var(--dourado);
+    padding: 6px 12px;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Painel de fechamento */
+.painel-valores {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dados-compra {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.label {
+    font-size: 11px;
+    color: var(--texto-mutado);
+    text-transform: uppercase;
+    margin: 0 0 2px 0;
+}
+
+.valor-destaque {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--dourado);
+}
+
+.botao-confirmar {
+    background: linear-gradient(to right, var(--dourado), #b38f20);
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.botao-confirmar:hover:not(:disabled) {
+    background: var(--dourado-hover);
+}
+
+.botao-confirmar:disabled {
+    background: #1e293b;
+    color: #475569;
+    cursor: not-allowed;
+}
